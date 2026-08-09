@@ -48,6 +48,22 @@ const projects: PROJECT[] = [
     },
 ];
 
+function PastProjectBubble({project, onClick, className}: {project: PROJECT; onClick: () => void; className: string;}) {
+    return (
+        <button type="button" onClick={onClick} className={`overflow-hidden group absolute items-center justify-center bg-gray-300 ${className}`}>
+                <span className="text-s text-center transition-opacity group-hover:opacity-0">
+                    {project.title}
+                </span>
+                <Image
+                    src={project.image}
+                    alt="project_image"
+                    fill
+                    className="object-cover opacity-0 transition-opacity group-hover:opacity-100 overflow-hidden"
+                />
+            </button>
+    );
+}
+
 const PastProjects = () => {
     const [curIndex, setIndex] = useState(0);
     const curProject = projects[curIndex];
@@ -61,55 +77,16 @@ const PastProjects = () => {
                 Past Projects
             </h2>
             {/*past project bubbles*/}
+            <div className="relative max-w-xl mx-auto">
             {/*top right*/}
-            <button type="button" onClick={() => setIndex(0)} className="overflow-hidden group absolute left-60 top-40 h-30 w-30 items-center rounded-full bg-gray-300">
-                <span className="text-s text-center transition-opacity group-hover:opacity-0">
-                    {"[Past Project]"}
-                </span>
-                <Image
-                    src={projects[0].image}
-                    alt="project_image"
-                    fill
-                    className="object-cover opacity-0 transition-opacity group-hover:opacity-100 overflow-hidden"
-                />
-            </button>
+            <PastProjectBubble project={projects[0]} onClick={() => setIndex(0)} className="-left-50 top-20 rounded-full h-30 w-30" />
             {/*bottom left*/}
-            <button type="button" onClick={() => setIndex(1)} className="overflow-hidden group absolute left-40 top-90 h-30 w-30 items-center rounded-full bg-gray-300">
-                <span className="text-s text-center transition-opacity group-hover:opacity-0">
-                    {"[Past Project]"}
-                </span>
-                <Image
-                    src={projects[1].image}
-                    alt="project_image"
-                    fill
-                    className="object-cover opacity-0 transition-opacity group-hover:opacity-100 overflow-hidden"
-                />
-            </button>
+            <PastProjectBubble project={projects[1]} onClick={() => setIndex(1)} className="-left-60 top-70 rounded-full h-30 w-30" />
             {/*top right*/}
-            <button type="button" onClick={() => setIndex(2)} className="overflow-hidden group absolute right-60 top-45 h-30 w-30 items-center rounded-full bg-gray-300">
-                <span className="text-s text-center transition-opacity group-hover:opacity-0">
-                    {"[Past Project]"}
-                </span>
-                <Image
-                    src={projects[2].image}
-                    alt="project_image"
-                    fill
-                    className="object-cover opacity-0 transition-opacity group-hover:opacity-100 overflow-hidden"
-                />
-            </button>
+            <PastProjectBubble project={projects[2]} onClick={() => setIndex(2)} className="-right-50 top-20 rounded-full h-30 w-30" />
             {/*bottom right*/}
-            <button type="button" onClick={() => setIndex(2)} className="overflow-hidden group absolute right-60 bottom-70 h-25 w-45 items-center rounded-2xl bg-gray-300">
-                <span className="text-s text-center transition-opacity group-hover:opacity-0">
-                    {"[More Past Project]"}
-                </span>
-                <Image
-                    src={projects[2].image}
-                    alt="project_image"
-                    fill
-                    className="object-cover opacity-0 transition-opacity group-hover:opacity-100 overflow-hidden"
-                />
-            </button>
-
+            <PastProjectBubble project={projects[2]} onClick={/*change to more past project link or smthin*/() => setIndex(2)} className="-right-50 top-70 rounded-2xl h-25 w-40" />
+            </div>
 
 
             {/*center past project card*/}
