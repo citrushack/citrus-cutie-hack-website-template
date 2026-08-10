@@ -24,3 +24,119 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+body {
+  margin: 0;
+  background: white;
+  color: black;
+}
+
+.industry-section {
+  width: fit-content;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.industry-section h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.industry-subtitle {
+  font-size: 10px;
+  margin: 2px 0 0;
+}
+
+/* Toggle buttons */
+
+.industry-filters {
+  display: flex;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.industry-filters button {
+  background: white;
+  color: black;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.industry-filters button.active {
+  background: black;
+  color: white;
+}
+
+/* Professional cards */
+
+.industry-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.industry-card {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+
+  background: white;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  padding: 10px;
+  min-width: 150px;
+
+  cursor: pointer;
+}
+
+.industry-card strong {
+  font-size: 11px;
+}
+
+.industry-card span {
+  font-size: 9px;
+  margin-top: 2px;
+}
+
+/* Popup */
+
+.industry-overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.industry-popup {
+  position: relative;
+  background: white;
+  color: black;
+  width: 300px;
+  padding: 24px;
+  border-radius: 10px;
+}
+
+.industry-popup h3 {
+  margin-top: 0;
+}
+
+.industry-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+
+  border: none;
+  background: none;
+  font-size: 20px;
+  cursor: pointer;
+}
