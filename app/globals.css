@@ -18,9 +18,30 @@
     --foreground: #ededed;
   }
 }
-
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: white;
+  color: black;
+}
+
+.faq-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.faq-section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.faq-label {
+  font-size: 11px;
+  margin: 4px 0 0;
+}
+
+.faq-contact {
+  font-size: 11px;
+  margin: 0;
 }
