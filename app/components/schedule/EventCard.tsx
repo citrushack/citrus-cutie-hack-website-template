@@ -27,13 +27,18 @@ const EventCard = ({ event, color, expanded, onToggle }: Props) => {
         <span className="font-bold">{event.summary}</span>
         <span className="text-sm">{time}</span>
       </div>
-      {expanded && (
+      <div
+    className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+      expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+    }`}>
+        <div className="overflow-hidden">
         <div className="mt-2 space-y-1 text-sm">
-          {event.location ? <p>{event.location}</p> : null}
-          {body ? <p>{body}</p> : null}
-          <p className="capitalize opacity-80">{event.category}</p>
+            {event.location ? <p>{event.location}</p> : null}
+            {body ? <p>{body}</p> : null}
+            <p className="capitalize opacity-80">{event.category}</p>
         </div>
-      )}
+        </div>
+    </div>
     </button>
   );
 };
