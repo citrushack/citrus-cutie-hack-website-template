@@ -10,9 +10,15 @@ type Professional = {
     company: string;
     type: Exclude<IndustryType, "All">;
     bio: string;
-    photo: string;
     linkedin: string;
 };
+
+const filters: IndustryType[] = [
+    "All",
+    "Speakers",
+    "Judges",
+    "Mentors",
+];
 
 const professionals: Professional[] = [
     {
@@ -21,8 +27,7 @@ const professionals: Professional[] = [
         company: "Company",
         type: "Speakers",
         bio: "Short bio about the speaker goes here.",
-        photo: "/placeholder-person.png",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "#",
     },
     {
         name: "Judge Name",
@@ -30,8 +35,7 @@ const professionals: Professional[] = [
         company: "Company",
         type: "Judges",
         bio: "Short bio about the judge goes here.",
-        photo: "/placeholder-person.png",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "#",
     },
     {
         name: "Mentor Name",
@@ -39,30 +43,27 @@ const professionals: Professional[] = [
         company: "Company",
         type: "Mentors",
         bio: "Short bio about the mentor goes here.",
-        photo: "/placeholder-person.png",
-        linkedin: "https://www.linkedin.com/",
+        linkedin: "#",
     },
 ];
 
-const filters: IndustryType[] = ["All", "Speakers", "Judges", "Mentors"];
-
 export default function Industry() {
-    const [selectedType, setSelectedType] = useState<IndustryType>("All");
+    const [selectedType, setSelectedType] =
+        useState<IndustryType>("All");
+
     const [selectedProfessional, setSelectedProfessional] =
         useState<Professional | null>(null);
 
     const filteredProfessionals =
         selectedType === "All"
             ? professionals
-            : professionals.filter((person) => person.type === selectedType);
+            : professionals.filter(
+                (professional) => professional.type === selectedType
+            );
 
     return (
         <section className="industry-section">
-            <h2>Industry Professionals</h2>
-
-            <p className="industry-subtitle">
-                Toggle by all, speakers, judges, mentors, etc.
-            </p>
+            <h2 className="industry-title">Industry</h2>
 
             <div className="industry-filters">
                 {filters.map((filter) => (
@@ -80,13 +81,13 @@ export default function Industry() {
                 {filteredProfessionals.map((person) => (
                     <button
                         key={person.name}
-                        className="industry-card"
+                        className="industry-person"
                         onClick={() => setSelectedProfessional(person)}
                     >
+                        <div className="industry-photo-placeholder" />
+
                         <strong>{person.name}</strong>
-                        <span>
-                            {person.position} at {person.company}
-                        </span>
+                        <span>{person.position}</span>
                     </button>
                 ))}
             </div>
@@ -107,16 +108,13 @@ export default function Industry() {
                             ×
                         </button>
 
-                        <img
-                            src={selectedProfessional.photo}
-                            alt={selectedProfessional.name}
-                            className="industry-photo"
-                        />
+                        <div className="industry-popup-photo" />
 
                         <h3>{selectedProfessional.name}</h3>
 
-                        <p>
-                            {selectedProfessional.position} at {selectedProfessional.company}
+                        <p className="industry-popup-position">
+                            {selectedProfessional.position} at{" "}
+                            {selectedProfessional.company}
                         </p>
 
                         <p>{selectedProfessional.bio}</p>
