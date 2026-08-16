@@ -11,6 +11,15 @@ type TeamType =
     | "UI/UX Design"
     | "SWE";
 
+type TeamMember = {
+    name: string;
+    position: string;
+    team: Exclude<TeamType, "All">;
+    bio: string;
+    linkedin: string;
+    github: string;
+};
+
 const filters: TeamType[] = [
     "All",
     "Leads",
@@ -20,13 +29,15 @@ const filters: TeamType[] = [
     "UI/UX Design",
     "SWE",
 ];
-type TeamMember = {
-    name: string;
-    position: string;
-    team: Exclude<TeamType, "All">;
-    bio: string;
-    linkedin: string;
-    github: string;
+
+const filterLabels: Record<TeamType, string> = {
+    All: "All",
+    Leads: "♡ Leads",
+    Operations: "♧ Ops",
+    Finance: "♧ Finance",
+    Marketing: "♢ Marketing",
+    "UI/UX Design": "♢ UI/UX",
+    SWE: "♧ SWE",
 };
 
 const teamMembers: TeamMember[] = [
@@ -92,41 +103,31 @@ export default function Team() {
 
     return (
         <section className="team-section">
-            <div className="team-heading">
-                <h2>Team</h2>
+            <h2 className="team-title">Team</h2>
 
-                <p className="team-subtitle">
-                    Toggle by all, leads, operations, finance, marketing, UI/UX design, SWE
-                </p>
+            <div className="team-filters">
+                {filters.map((filter) => (
+                    <button
+                        key={filter}
+                        className={selectedType === filter ? "active" : ""}
+                        onClick={() => setSelectedType(filter)}
+                    >
+                        {filterLabels[filter]}
+                    </button>
+                ))}
             </div>
 
-            <div className="team-content">
-                <div className="team-filters">
-                    {filters.map((filter) => (
-                        <button
-                            key={filter}
-                            className={selectedType === filter ? "active" : ""}
-                            onClick={() => setSelectedType(filter)}
-                        >
-                            {filter}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="team-grid">
-                    {filteredMembers.map((member) => (
-                        <button
-                            key={member.name}
-                            className="team-card"
-                            onClick={() => setSelectedMember(member)}
-                        >
-                            <div className="team-photo-placeholder" />
-
-                            <strong>{member.name}</strong>
-                            <span>{member.position}</span>
-                        </button>
-                    ))}
-                </div>
+            <div className="team-grid">
+                {filteredMembers.map((member) => (
+                    <button
+                        key={member.name}
+                        className="team-card"
+                        onClick={() => setSelectedMember(member)}
+                        aria-label={`Open ${member.name}`}
+                    >
+                        <div className="team-card-image" />
+                    </button>
+                ))}
             </div>
 
             {selectedMember && (
@@ -145,7 +146,10 @@ export default function Team() {
                             ×
                         </button>
 
-                        <div className="team-popup-photo-placeholder" />
+                        <div className="team-popup-photos">
+                            <div className="team-popup-photo">Headshot</div>
+                            <div className="team-popup-photo">Fun photo</div>
+                        </div>
 
                         <h3>{selectedMember.name}</h3>
                         <p>{selectedMember.position}</p>
