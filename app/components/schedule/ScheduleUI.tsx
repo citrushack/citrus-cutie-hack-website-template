@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { GoogleEvent, EventTypes, LABELS } from "@/app/types/schedule";
 import ToggleTypes from "./ToggleTypes";
 import EventCard from "./EventCard";	
@@ -13,7 +13,7 @@ function getEventType(description?: string): EventTypes {
     const type = description?.split("\n")[0]?.replace(/^#/, "").trim().toLowerCase();
 
     if (type && type in LABELS) {return type as EventTypes;}
-    else {return "other";}
+    else {return "all";}
 }
 {/*converts date key into date object*/}
 function getDay(dateTime: string) {
@@ -39,14 +39,20 @@ const ScheduleUI = ({ eventList }: Props) => {
 
     {/*active categories of events*/}
     const [activeTypes, setActiveTypes] = useState<Set<EventTypes>>(
-        () => new Set((Object.keys(LABELS) as EventTypes[]).filter((t) => t !== "all")),
+        () => new Set(Object.keys(LABELS) as EventTypes[]),
     );
 
     const handleToggle = (type: EventTypes) => {
         setActiveTypes((prev) => {
             const next = new Set(prev);
-            if (next.has(type)) next.delete(type);
-            else next.add(type);
+            if (type === "all" && !next.has(type)) {
+                return new Set((Object.keys(LABELS) as EventTypes[]));
+            }
+            if (next.has(type)) {
+                next.delete(type);
+                next.delete("all");
+            }
+            else next.add(type)
             return next;
         });
     };

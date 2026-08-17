@@ -35,47 +35,35 @@ interface types {
   
   export type EventTypes =
     | "all"
-    | "other"
+    | "required"
     | "workshop"
-    | "general"
-    | "food"
-    | "social"
-    | "activities";
+    | "activity"
+    | "meal";
   
   export const LABELS: Record<EventTypes, types> = {
     all: {
-      color: "red",
-      background: "bg-red-500",
-      type: "leads",
-    },
-    other: {
       color: "gray",
       background: "bg-gray-500",
       type: "leads",
     },
+    required: {
+      color: "red",
+      background: "bg-red-500",
+      type: "leads",
+    },
     workshop: {
       color: "grayblue",
-      background: "bg-red-500",
+      background: "bg-blue-500",
       type: "hackathon",
     },
-    general: {
+    activity: {
       color: "pink",
       background: "bg-pink-500",
       type: "hackathon",
     },
-    food: {
-      color: "yellow",
-      background: "bg-yellow-500",
-      type: "hackathon",
-    },
-    social: {
-      color: "red",
-      background: "bg-red-300",
-      type: "hackathon",
-    },
-    activities: {
-      color: "yellow",
-      background: "bg-green-400",
+    meal: {
+      color: "green",
+      background: "bg-green-500",
       type: "hackathon",
     },
   };

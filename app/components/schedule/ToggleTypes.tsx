@@ -5,10 +5,11 @@ import { EventTypes, LABELS} from "@/app/types/schedule";
 type Props = {
     activeTypes: Set<EventTypes>;
     onToggle: (type: EventTypes) => void
+
 };
  
 const ToggleTypes = ({activeTypes, onToggle}: Props) => {
-    const types = (Object.keys(LABELS) as EventTypes[]).filter((type) => type !== "all");
+    const types = Object.keys(LABELS) as EventTypes[];
 
     return (
         <div className="flex w-full flex-wrap gap-2 justify-center">
