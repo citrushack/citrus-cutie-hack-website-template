@@ -1,24 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import styles from "./Team.module.css";
 
-type TeamType =
-    | "All"
-    | "Leads"
-    | "Operations"
-    | "Finance"
-    | "Marketing"
-    | "UI/UX Design"
-    | "SWE";
-
-type TeamMember = {
-    name: string;
-    position: string;
-    team: Exclude<TeamType, "All">;
-    bio: string;
-    linkedin: string;
-    github: string;
-};
+import {
+    teamMembers,
+    TeamMember,
+    TeamType,
+} from "../data/team";
 
 const filters: TeamType[] = [
     "All",
@@ -40,76 +30,31 @@ const filterLabels: Record<TeamType, string> = {
     SWE: "♧ SWE",
 };
 
-const teamMembers: TeamMember[] = [
-    {
-        name: "Lead Name",
-        position: "Director",
-        team: "Leads",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-    {
-        name: "Operations Lead",
-        position: "Operations",
-        team: "Operations",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-    {
-        name: "Finance Lead",
-        position: "Finance",
-        team: "Finance",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-    {
-        name: "Marketing Lead",
-        position: "Marketing",
-        team: "Marketing",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-    {
-        name: "Design Lead",
-        position: "UI/UX Designer",
-        team: "UI/UX Design",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-    {
-        name: "SWE Lead",
-        position: "Software Engineering",
-        team: "SWE",
-        bio: "Short bio about the team member.",
-        linkedin: "#",
-        github: "#",
-    },
-];
-
 export default function Team() {
-    const [selectedType, setSelectedType] = useState<TeamType>("All");
+    const [selectedType, setSelectedType] =
+        useState<TeamType>("All");
+
     const [selectedMember, setSelectedMember] =
         useState<TeamMember | null>(null);
 
     const filteredMembers =
         selectedType === "All"
             ? teamMembers
-            : teamMembers.filter((member) => member.team === selectedType);
+            : teamMembers.filter(
+                (member) => member.team === selectedType
+            );
 
     return (
-        <section className="team-section">
-            <h2 className="team-title">Team</h2>
+        <section className={styles.teamSection}>
+            <h2 className={styles.teamTitle}>Team</h2>
 
-            <div className="team-filters">
+            <div className={styles.teamFilters}>
                 {filters.map((filter) => (
                     <button
                         key={filter}
-                        className={selectedType === filter ? "active" : ""}
+                        className={
+                            selectedType === filter ? styles.active : ""
+                        }
                         onClick={() => setSelectedType(filter)}
                     >
                         {filterLabels[filter]}
@@ -117,45 +62,68 @@ export default function Team() {
                 ))}
             </div>
 
-            <div className="team-grid">
+            <div className={styles.teamGrid}>
                 {filteredMembers.map((member) => (
                     <button
                         key={member.name}
-                        className="team-card"
+                        className={styles.teamCard}
                         onClick={() => setSelectedMember(member)}
-                        aria-label={`Open ${member.name}`}
                     >
-                        <div className="team-card-image" />
+                        <div className={styles.teamCardImage}>
+                            <Image
+                                src={member.image}
+                                alt={member.name}
+                                fill
+                                sizes="120px"
+                            />
+                        </div>
+
+                        <span className={styles.memberName}>
+                            {member.name}
+                        </span>
+
+                        <span className={styles.memberPosition}>
+                            {member.position}
+                        </span>
                     </button>
                 ))}
             </div>
 
             {selectedMember && (
                 <div
-                    className="team-overlay"
+                    className={styles.teamOverlay}
                     onClick={() => setSelectedMember(null)}
                 >
                     <div
-                        className="team-popup"
+                        className={styles.teamPopup}
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
-                            className="team-close"
+                            className={styles.teamClose}
                             onClick={() => setSelectedMember(null)}
+                            aria-label="Close team member popup"
                         >
                             ×
                         </button>
 
-                        <div className="team-popup-photos">
-                            <div className="team-popup-photo">Headshot</div>
-                            <div className="team-popup-photo">Fun photo</div>
+                        <div className={styles.popupImage}>
+                            <Image
+                                src={selectedMember.image}
+                                alt={selectedMember.name}
+                                fill
+                                sizes="200px"
+                            />
                         </div>
 
                         <h3>{selectedMember.name}</h3>
-                        <p>{selectedMember.position}</p>
+
+                        <p className={styles.popupPosition}>
+                            {selectedMember.position}
+                        </p>
+
                         <p>{selectedMember.bio}</p>
 
-                        <div className="team-links">
+                        <div className={styles.teamLinks}>
                             <a
                                 href={selectedMember.linkedin}
                                 target="_blank"
