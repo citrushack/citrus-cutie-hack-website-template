@@ -24,6 +24,7 @@ const Hero = ({ targetDate = DEFAULT_TARGET_DATE }: HeroProps) => {
   });
 
   useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
     const calculateTimeLeft = () => {
       const difference = new Date(targetDate).getTime() - Date.now();
 
@@ -43,13 +44,14 @@ const Hero = ({ targetDate = DEFAULT_TARGET_DATE }: HeroProps) => {
         minutes: Math.floor((difference / (1000 * 60)) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       });
+
+      const delay = 1000 - (Date.now() % 1000);
+      timer = setTimeout(calculateTimeLeft, delay);
     };
 
     calculateTimeLeft();
 
-    const timer = setInterval(calculateTimeLeft, 1000);
-
-    return () => clearInterval(timer);
+    return () => clearTimeout(timer);
   }, [targetDate]);
 
   const formatNumber = (num: number) => String(num).padStart(2, "0");
