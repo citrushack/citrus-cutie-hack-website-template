@@ -1,51 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import styles from "./Industry.module.css";
 
-type IndustryType = "All" | "Speakers" | "Judges" | "Mentors";
-
-type Professional = {
-    name: string;
-    position: string;
-    company: string;
-    type: Exclude<IndustryType, "All">;
-    bio: string;
-    linkedin: string;
-};
-
-const filters: IndustryType[] = [
-    "All",
-    "Speakers",
-    "Judges",
-    "Mentors",
-];
-
-const professionals: Professional[] = [
-    {
-        name: "Speaker Name",
-        position: "Software Engineer",
-        company: "Company",
-        type: "Speakers",
-        bio: "Short bio about the speaker goes here.",
-        linkedin: "#",
-    },
-    {
-        name: "Judge Name",
-        position: "Product Manager",
-        company: "Company",
-        type: "Judges",
-        bio: "Short bio about the judge goes here.",
-        linkedin: "#",
-    },
-    {
-        name: "Mentor Name",
-        position: "Software Engineer",
-        company: "Company",
-        type: "Mentors",
-        bio: "Short bio about the mentor goes here.",
-        linkedin: "#",
-    },
-];
+import {
+    filters,
+    professionals,
+    IndustryType,
+    Professional,
+} from "../data/Industry";
 
 export default function Industry() {
     const [selectedType, setSelectedType] =
@@ -62,14 +26,16 @@ export default function Industry() {
             );
 
     return (
-        <section className="industry-section">
-            <h2 className="industry-title">Industry</h2>
+        <section className={styles.industrySection}>
+            <h2 className={styles.industryTitle}>Industry</h2>
 
-            <div className="industry-filters">
+            <div className={styles.industryFilters}>
                 {filters.map((filter) => (
                     <button
                         key={filter}
-                        className={selectedType === filter ? "active" : ""}
+                        className={
+                            selectedType === filter ? styles.active : ""
+                        }
                         onClick={() => setSelectedType(filter)}
                     >
                         {filter}
@@ -77,14 +43,23 @@ export default function Industry() {
                 ))}
             </div>
 
-            <div className="industry-grid">
+            <div className={styles.industryGrid}>
                 {filteredProfessionals.map((person) => (
                     <button
                         key={person.name}
-                        className="industry-person"
+                        className={styles.industryPerson}
                         onClick={() => setSelectedProfessional(person)}
                     >
-                        <div className="industry-photo-placeholder" />
+                        <div className={styles.industryPhoto}>
+                            {person.image && (
+                                <Image
+                                    src={person.image}
+                                    alt={person.name}
+                                    fill
+                                    sizes="74px"
+                                />
+                            )}
+                        </div>
 
                         <strong>{person.name}</strong>
                         <span>{person.position}</span>
@@ -94,25 +69,35 @@ export default function Industry() {
 
             {selectedProfessional && (
                 <div
-                    className="industry-overlay"
+                    className={styles.industryOverlay}
                     onClick={() => setSelectedProfessional(null)}
                 >
                     <div
-                        className="industry-popup"
+                        className={styles.industryPopup}
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
-                            className="industry-close"
+                            className={styles.industryClose}
                             onClick={() => setSelectedProfessional(null)}
+                            aria-label="Close professional popup"
                         >
                             ×
                         </button>
 
-                        <div className="industry-popup-photo" />
+                        <div className={styles.popupPhoto}>
+                            {selectedProfessional.image && (
+                                <Image
+                                    src={selectedProfessional.image}
+                                    alt={selectedProfessional.name}
+                                    fill
+                                    sizes="100px"
+                                />
+                            )}
+                        </div>
 
                         <h3>{selectedProfessional.name}</h3>
 
-                        <p className="industry-popup-position">
+                        <p className={styles.popupPosition}>
                             {selectedProfessional.position} at{" "}
                             {selectedProfessional.company}
                         </p>
