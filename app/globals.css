@@ -18,3 +18,9 @@ body {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
 }
+
+body {
+  margin: 0;
+  background: white;
+  color: black;
+}
