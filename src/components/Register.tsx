@@ -81,11 +81,11 @@ const Register = () => {
                     isFlipped ? "[transform:rotateY(180deg)]" : "",
                   ].join(" ")}
                 >
-                  <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-white px-2 text-center text-xl font-medium sm:text-2xl [backface-visibility:hidden]">
+                  <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-white px-2 text-center text-xl font-medium [backface-visibility:hidden] sm:text-2xl">
                     {role.name}
                   </div>
 
-                  <div className="absolute inset-0 flex items-center justify-center rounded-2xl bg-white px-2 text-center text-sm leading-relaxed sm:text-base [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute inset-0 flex [transform:rotateY(180deg)] items-center justify-center rounded-2xl bg-white px-2 text-center text-sm leading-relaxed [backface-visibility:hidden] sm:text-base">
                     {role.description}
                   </div>
                 </div>
