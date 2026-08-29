@@ -1,6 +1,6 @@
 "use client";
 
-import FlipCard from "./card/FlipCard";
+import FlipCard from "@/components/ui/FlipCard";
 
 const STATS = [
   "#+ Hackers (Participants)",

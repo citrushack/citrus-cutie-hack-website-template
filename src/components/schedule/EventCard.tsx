@@ -1,6 +1,6 @@
 "use client";
 
-import { GoogleEvent, EventTypes } from "@/app/types/schedule";
+import { GoogleEvent, EventTypes } from "@/types/schedule";
 
 type Props = {
   event: GoogleEvent & { category: EventTypes };

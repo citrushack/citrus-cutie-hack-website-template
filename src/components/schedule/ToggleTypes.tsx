@@ -1,6 +1,6 @@
 "use client";
 
-import { EventTypes, LABELS} from "@/app/types/schedule";
+import { EventTypes, LABELS} from "@/types/schedule";
 
 type Props = {
     activeTypes: Set<EventTypes>;

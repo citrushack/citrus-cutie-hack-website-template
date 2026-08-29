@@ -1,7 +1,7 @@
 "use client";
 import { useState} from "react";
 import Image from "next/image";
-import {Project, PROJECTS} from "../data/pastprojects";
+import {Project, PROJECTS} from "@/data/pastprojects";
 
 function PastProjectBubble({project, onClick, className}: {project: Project; onClick: () => void; className: string;}) {
     return (

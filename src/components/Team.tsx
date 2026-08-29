@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import styles from "./Team.module.css";
+import styles from "@/styles/Team.module.css";
 
 import {
     teamMembers,
     TeamMember,
     TeamType,
-} from "../data/team";
+} from "@/data/team";
 
 const filters: TeamType[] = [
     "All",
