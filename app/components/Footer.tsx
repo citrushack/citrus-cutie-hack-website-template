@@ -15,21 +15,21 @@ const Footer = () => {
         target="_blank"
         className="absolute bottom-[50%] left-[0%] z-40 hover:scale-105 hover:opacity-95"
       >
-        <FaInstagram className="text-black text-4xl drop-shadow-xl md:text-6xl 2xl:text-8xl" />
+        <FaInstagram className="text-black text-2xl drop-shadow-xl md:text-4xl 2xl:text-6xl" />
       </Link>
       <Link
         href="https://www.linkedin.com/company/hackathon_name/"
         target="_blank"
-        className="absolute bottom-[50%] left-[5%] z-40 hover:scale-105 hover:opacity-95"
+        className="absolute bottom-[50%] left-[3%] z-40 hover:scale-105 hover:opacity-95"
       >
-        <FaLinkedin className="text-4xl drop-shadow-xl md:text-6xl 2xl:text-8xl" />
+        <FaLinkedin className="text-2xl drop-shadow-xl md:text-4xl 2xl:text-6xl" />
       </Link>
       <Link
         href="mailto:hackathon_name@gmail.com"
         target="_blank"
-        className="absolute bottom-[50%] left-[10%] z-40 hover:scale-105 hover:opacity-95"
+        className="absolute bottom-[50%] left-[6%] z-40 hover:scale-105 hover:opacity-95"
       >
-        <FaRegEnvelope className="text-4xl md:text-6xl 2xl:text-8xl" />
+        <FaRegEnvelope className="text-2xl md:text-4xl 2xl:text-6xl" />
       </Link>
       <p className="md:text-md absolute bottom-1 z-50 text-xs md:bottom-2 md:right-2 2xl:text-xl">{`© ${new Date().getFullYear()} (Name) Hack • Made with 💗 and (theme) by ACM Hacks`}</p>
     </div>
