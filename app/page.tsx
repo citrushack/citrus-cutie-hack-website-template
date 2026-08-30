@@ -7,6 +7,8 @@ import Sponsors from "./components/Sponsors";
 import Industry from "./components/Industry";
 import Team from "./components/Team";
 import FAQ from "./components/FAQ";
+import Footer from "./components/Footer";
+
 export const dynamic = "force-dynamic";
 
 export default function Home() {
@@ -21,6 +23,7 @@ export default function Home() {
       <Industry />
       <Team />
       <FAQ />
+      <Footer />
     </main>
   );
 }
