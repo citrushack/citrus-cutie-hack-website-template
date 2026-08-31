@@ -25,7 +25,7 @@ function FlipCard({ title, description }: Track) {
 
 export default function TracksPage() {
   return (
-    <section className="tracksSection">
+    <section id="tracks" className="tracksSection">
       <h2 className="w-full text-center text-4xl font-extrabold">Hackathon Tracks</h2>
       <div className="tracksGrid">
         {tracks.map((track, i) => (
