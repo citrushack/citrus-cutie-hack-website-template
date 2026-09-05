@@ -31,6 +31,7 @@ const navLinks = [
   },
   { href: "#team", label: "Team" },
   { href: "#faq", label: "FAQ" },
+  { href: "#dashboard", label: "Dashboard" },
 ];
 
 const socialLinks = [
