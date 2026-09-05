@@ -110,3 +110,5 @@ npm run lint
 ```bash
 npm run build
 ```
+
+- Format on save

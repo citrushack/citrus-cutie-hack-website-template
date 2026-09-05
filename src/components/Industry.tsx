@@ -9,7 +9,7 @@ import {
     professionals,
     IndustryType,
     Professional,
-} from "../data/Industry";
+} from "@/data/industry";
 
 export default function Industry() {
     const [selectedType, setSelectedType] =

@@ -40,7 +40,7 @@ const About = () => {
       className="w-full bg-white px-10 py-16 text-black sm:px-14 lg:px-20"
     >
       <h2 className="mb-12 text-center text-4xl font-bold tracking-tight sm:text-5xl">
-        About [Hackathon name]
+        About [Hackathon Name]
       </h2>
 
       <div className="mx-auto flex max-w-4xl flex-col gap-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
