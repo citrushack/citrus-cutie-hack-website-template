@@ -89,6 +89,38 @@ const Hero = ({ targetDate = DEFAULT_TARGET_DATE }: HeroProps) => {
         <p className="mt-3 text-2xl">
           [Date - ex: November 21, 2026] ✦ UC Riverside - Winston Chung
         </p>
+
+        <p className="mt-3 text-xl">
+          A [length of hackathon - ex: 12 hour] journey where imagination meets
+          innovation.
+        </p>
+
+        <div className="mt-6 flex gap-4">
+          <a
+            href="/register"
+            className="flex h-16 w-40 items-center justify-center rounded-xl border-[3px] border-black text-lg font-medium transition-transform hover:scale-105"
+          >
+            Register Now
+          </a>
+
+          <a
+            href="/live"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-16 w-40 items-center justify-center rounded-xl border-[3px] border-black text-lg font-medium transition-transform hover:scale-105"
+          >
+            Live Site
+          </a>
+
+          <a
+            href="https://devpost.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-16 w-40 items-center justify-center rounded-xl border-[3px] border-black text-lg font-medium transition-transform hover:scale-105"
+          >
+            Devpost
+          </a>
+        </div>
       </div>
 
       <div
