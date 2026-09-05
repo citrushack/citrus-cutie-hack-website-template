@@ -28,7 +28,7 @@ const Sponsors = () => {
               key={sponsor.id}
               type="button"
               onClick={() => toggleFlip(sponsor.id)}
-              className={`relative h-30 w-full max-w-sm transition-transform duration-300 [transform-style:preserve-3d] ${isFlipped ? "[transform:rotateY(180deg)]" : ""}`}
+              className={`relative h-36 w-full max-w-sm transition-transform duration-300 transform-3d ${isFlipped ? "transform-[rotateY(180deg)]" : ""}`}
             >
               {/*front of card*/}
               <div className="absolute inset-0 flex flex-col items-center justify-center rounded-2xl bg-gray-300 backface-hidden">
@@ -44,15 +44,21 @@ const Sponsors = () => {
                 </span>
               </div>
               {/*back of card*/}
-              <div className="absolute inset-0 flex [transform:rotateY(180deg)] flex-col items-center justify-center gap-2 rounded-2xl bg-gray-300 backface-hidden">
-                <span className="text-xl font-bold">{sponsor.name}</span>
-                <p className="text-sm text-gray-500">{sponsor.description}</p>
+              <div className="absolute inset-0 flex transform-[rotateY(180deg)] flex-col items-center rounded-2xl bg-gray-300 px-3 pt-4 pb-8 backface-hidden">
+                <span className="text-center text-xl font-bold">
+                  {sponsor.name}
+                </span>
+
+                <p className="mt-2 px-1 text-center text-sm leading-4 text-gray-500">
+                  {sponsor.description}
+                </p>
+
                 <a
                   href={sponsor.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  className="absolute right-2 bottom-2 mt-1 rounded-2xl bg-gray-400 px-3 text-sm text-black hover:text-blue-500"
+                  className="absolute right-2 bottom-2 rounded-2xl bg-gray-400 px-3 text-sm text-black hover:text-blue-500"
                 >
                   Visit
                 </a>
