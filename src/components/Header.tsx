@@ -10,12 +10,28 @@ import {
 
 const navLinks = [
   { href: "#register", label: "Register" },
-  { href: "#about", label: "About", hasDropdown: true },
+  {
+    href: "#about",
+    label: "About",
+    dropdown: [
+      { href: "#about", label: "About [Hackathon name]" },
+      { href: "#past-projects", label: "Past Projects" },
+    ],
+  },
   { href: "#tracks", label: "Tracks" },
   { href: "#schedule", label: "Schedule" },
-  { href: "#people", label: "People", hasDropdown: true },
+  {
+    href: "#people",
+    label: "People",
+    dropdown: [
+      { href: "#sponsors", label: "Sponsors" },
+      { href: "#industry", label: "Industry" },
+      { href: "#team", label: "Team" },
+    ],
+  },
   { href: "#team", label: "Team" },
   { href: "#faq", label: "FAQ" },
+  { href: "#dashboard", label: "Dashboard" },
 ];
 
 const socialLinks = [
@@ -58,18 +74,41 @@ const Header = () => {
         </Link>
 
         <div className="flex items-center gap-7" aria-label="Main">
-          {navLinks.map(({ href, label, hasDropdown }) => (
-            <Link
-              key={href}
-              href={href}
-              className="inline-flex items-center gap-1 transition-transform duration-300 ease-out hover:scale-110"
-            >
-              {label}
-              {hasDropdown && (
-                <ChevronDown className="size-3.5" aria-hidden="true" />
-              )}
-            </Link>
-          ))}
+          {navLinks.map(({ href, label, dropdown }) =>
+            dropdown ? (
+              <details key={href} className="group relative">
+                <summary className="inline-flex cursor-pointer list-none items-center gap-1 transition-transform duration-300 ease-out hover:scale-110">
+                  {label}
+                  <ChevronDown className="size-3.5" aria-hidden="true" />
+                </summary>
+                <div className="absolute left-1/2 top-full z-10 mt-3 min-w-max -translate-x-1/2 rounded-lg bg-white p-2 text-base shadow-md">
+                  {dropdown.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="block rounded-md px-4 py-2 transition-colors hover:bg-black hover:text-white"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </details>
+            ) : (
+              <Link
+                key={href}
+                href={href}
+                className="inline-flex items-center gap-1 transition-transform duration-300 ease-out hover:scale-110"
+              >
+                {label}
+              </Link>
+            ),
+          )}
+          <Link
+            href="#dashboard"
+            className="inline-flex items-center rounded-full border-2 border-black px-3 py-1 transition-transform duration-300 ease-out hover:scale-105"
+          >
+            Dashboard
+          </Link>
         </div>
 
         <div className="flex items-center justify-end gap-4">
